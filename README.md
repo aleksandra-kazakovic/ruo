@@ -11,10 +11,10 @@ docker-compose up
 cwl-runner scatter-ann.cwl config.yaml
 ```
 
-##Domaci 3 - Kubernetes
+## Domaci 3 - Kubernetes
 APP : http://k8s-master.unic.kg.ac.rs:30006/swagger/
 
-##Domaci 4 - Zookeeper
+## Domaci 4 - Zookeeper
 1. Pokreniti skriptu pythonApp/start.sh
 
 2. Pokrenuti python app
@@ -32,7 +32,7 @@ java -Dserver.port=8082 -Dzk.url=localhost:2181 -Dleader.algo=2 -jar target/bkat
 java -Dserver.port=8081 -Dzk.url=localhost:2181 -Dleader.algo=2 -jar target/bkatwal-zookeeper-demo-1.0-SNAPSHOT.jar
 ```
 
-##Domaci 4 - AWS 
+## Domaci 5 - AWS 
 Upaliti EC2 i pokrenuti app/app.py
 
 Bucket - aleksandra-1025-2021
