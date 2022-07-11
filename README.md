@@ -39,7 +39,7 @@ Bucket - aleksandra-1025-2021
 
 API Gateway - aleksandra_1025_2021
 
-Primer poziva: https://wnxt27xv1m.execute-api.eu-central-1.amazonaws.com/v1/predict?model_name=fragment1&dataset_name=predict
+Primer poziva (POST metod): https://wnxt27xv1m.execute-api.eu-central-1.amazonaws.com/v1/predict?model_name=fragment1&dataset_name=predict
 
 
 
