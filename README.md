@@ -1,11 +1,6 @@
 # Racunarstvo u oblaku 
 Domaci zadaci
 
-## Domaci 1 - docker
-```
-docker-compose up
-```
-
 ## Domaci 2 - CWL
 ```
 cwl-runner scatter-ann.cwl config.yaml
