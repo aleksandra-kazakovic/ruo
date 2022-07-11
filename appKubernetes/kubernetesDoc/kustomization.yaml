@@ -1,0 +1,16 @@
+secretGenerator:
+- name: flaskapi-secrets
+  literals:
+  - password=branka
+- name: python-mysql-data
+  literals:
+  - USER=root
+  - DB_NAME=appKubernetes
+  - PORT=30004
+  - HOST='k8s-master.unic.kg.ac.rs'
+resources:
+  - mysql-pv.yaml
+  - mysql-deployment.yaml
+  - flaskapp-pv.yaml
+  - flaskapp-deployment.yaml
+ 

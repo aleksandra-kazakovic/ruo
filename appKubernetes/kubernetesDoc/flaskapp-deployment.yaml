@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapi
+  namespace: branka
+  labels:
+    app: flaskapi
+spec:
+  selector:
+    matchLabels:
+      app: flaskapi
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: flaskapi
+    spec:
+      containers:
+      - image: akazakovic/flask-app
+        name: flaskapi
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 5000
+          name: flaskapi
+        env:
+        - name: USER
+          valueFrom:
+            secretKeyRef:
+              name: python-mysql-data-2ht4kbbcfb
+              key: USER
+        - name: PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: flaskapi-secrets-dh2g84d929
+              key: password
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: python-mysql-data-2ht4kbbcfb
+              key: DB_NAME
+        - name: PORT
+          valueFrom:
+            secretKeyRef:
+              name: python-mysql-data-2ht4kbbcfb
+              key: PORT
+        - name: HOST
+          valueFrom:
+            secretKeyRef:
+              name: python-mysql-data-2ht4kbbcfb
+              key: HOST
+        volumeMounts:
+        - name: flaskapi-pv-volume
+          mountPath: /app/models
+      volumes:
+      - name: flaskapi-pv-volume
+        persistentVolumeClaim:
+          claimName: flaskapi-pv-claim
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flaskapi
+  namespace: branka
+  labels:
+    app: flaskapi
+spec:
+  ports:
+    - port: 5000
+      nodePort: 30006
+      targetPort: 5000
+  selector:
+    app: flaskapi
+  type: NodePort
