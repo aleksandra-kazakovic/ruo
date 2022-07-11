@@ -1,0 +1,1 @@
+cwl-runner scatter-ann.cwl config.yaml
