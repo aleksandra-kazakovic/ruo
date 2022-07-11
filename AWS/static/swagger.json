@@ -1,0 +1,265 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Flask app",
+    "version": "1.0.0",
+    "title": "Python-MySQL app",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+ 
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/trainMlModel": {
+      "post": {
+        "tags": [
+          "Make model"
+        ],
+        "summary": "Add a new pet to the store",
+        "description": "",
+        "operationId": "addPet",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "file_name",
+            "type": "string",
+            "required": true,
+            "description": "Description of file contents."
+          },
+          {
+            "in": "formData",
+            "name": "epochs",
+            "type": "number",
+            "required": false,
+            "description": "Description of file contents."
+          },
+          {
+            "in": "formData",
+            "name": "batch_size",
+            "type": "number",
+            "required": false,
+            "description": "Description of file contents."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/getListOfModels": {
+      "get": {
+        "tags": [
+          "ML Request"
+        ],
+        "summary": "Get all models",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "##/components/schemas/mlRequests"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "petstore_auth": [
+              "write:pets",
+              "read:pets"
+            ]
+          }
+        ]
+      }
+    },
+    "/predict": {
+      "post": {
+        "tags": [
+          "Prediction"
+        ],
+        "summary": "Predict y",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "model_name",
+            "type": "string",
+            "required": true,
+            "description": "Description of file contents."
+          },
+          {
+            "in": "formData",
+            "name": "dataset_name",
+            "type": "string",
+            "required": true,
+            "description": "Description of file contents."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/mlPredictions"
+              }
+            }
+            
+          },
+          "405": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "id": {
+        "properties": {
+          "ok": {
+            "type": "string"
+          }
+        }
+      },
+      "prediction":{
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "file",
+            "format": "file"
+          },
+          "model_guid": {
+            "type": "string",
+            "format": "string"
+          }
+        }
+      },
+      "newModel":{
+        "type": "object",
+        "properties": {
+          "file": {
+            "type": "file",
+            "format": "file"
+          },
+          "y_col": {
+            "type": "string",
+            "format": "string"
+          },
+          "model_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "epochs": {
+            "type": "number",
+            "format": "number",
+            "required": false
+          },
+          "batch_size": {
+            "type": "number",
+            "format": "number",
+            "required": false
+          }
+        }
+      },
+      "mlRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number",
+            "format": "number"
+          },
+          "model_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "guid": {
+            "type": "string",
+            "format": "string"
+          },
+          "path": {
+            "type": "string",
+            "format": "string"
+          },
+          "accuracy": {
+            "type": "number",
+            "format": "number"
+          },
+          "auc": {
+            "type": "number",
+            "format": "number"
+          }
+        }
+      },
+      "mlRequests": {
+        "type": "object",
+        "properties": {
+          "mlRequest": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/mlRequest"
+            }
+          }
+        }
+      },
+      "mlPredictions": {
+        "properties": {
+          "prediction": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
