@@ -36,7 +36,9 @@ java -Dserver.port=8081 -Dzk.url=localhost:2181 -Dleader.algo=2 -jar target/bkat
 Upaliti EC2 i pokrenuti app/app.py
 
 Bucket - aleksandra-1025-2021
+
 API Gateway - aleksandra_1025_2021
+
 Primer poziva: https://wnxt27xv1m.execute-api.eu-central-1.amazonaws.com/v1/predict?model_name=fragment1&dataset_name=predict
 
 
