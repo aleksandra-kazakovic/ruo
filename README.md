@@ -70,7 +70,11 @@ Bucket - aleksandra-1025-2021<br/>
 API Gateway - aleksandra_1025_2021<br/>
 
 Primer poziva (POST metod): https://wnxt27xv1m.execute-api.eu-central-1.amazonaws.com/v1/predict?model_name=fragment1&dataset_name=predict (paziti da se fragment1.h5 i predict.csv nalaze u s3 skladistu)
-Primer eventa: ubaciti fragment2.csv u s3 skladiste
+
+Primer eventa:<br/> 
+(INSERT) ubaciti fragment2.csv u s3 skladiste. Za proveravanje baze izvrsiti select * from aleksandra_1025_2021<br/> 
+(UPDATE) ubaciti fragment2.csv u s3 skladiste za ponovno obucavanje modela. Za proveravanje baze izvrsiti select * from aleksandra_1025_2021<br/> 
+(DELETE) obrisati fragment2.csv iz s3 skladista. Za proveravanje baze izvrsiti select * from aleksandra_1025_2021<br/> 
 
 
 
