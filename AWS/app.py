@@ -81,6 +81,8 @@ def predict():
 
         print(predictions)
         if (isinstance(predictions, int)):
+            if(predictions != 500):
+                return "Model receives "+ str(predictions)+" inputs. The prediction file should not have an output column. Check if the file is correct."
             return "No file on s3"
         i = 1
         pred_dict = dict()

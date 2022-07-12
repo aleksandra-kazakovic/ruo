@@ -26,9 +26,9 @@
         "tags": [
           "Make model"
         ],
-        "summary": "Add a new pet to the store",
+        "summary": "Train new model.",
         "description": "",
-        "operationId": "addPet",
+        "operationId": "addModel",
         "consumes": [
           "multipart/form-data"
         ],
@@ -38,35 +38,35 @@
             "name": "file",
             "type": "file",
             "required": true,
-            "description": "The file to upload."
+            "description": "csv file with training data"
           },
           {
             "in": "formData",
             "name": "y_col",
             "type": "string",
             "required": true,
-            "description": "Description of file contents."
+            "description": "The name of the output column"
           },
           {
             "in": "formData",
             "name": "model_name",
             "type": "string",
             "required": true,
-            "description": "Description of file contents."
+            "description": "Model name. It can be any text."
           },
           {
             "in": "formData",
             "name": "epochs",
             "type": "number",
             "required": false,
-            "description": "Description of file contents."
+            "description": "Number of epochs."
           },
           {
             "in": "formData",
             "name": "batch_size",
             "type": "number",
             "required": false,
-            "description": "Description of file contents."
+            "description": "Batch size."
           }
         ],
         "responses": {
@@ -132,14 +132,14 @@
             "name": "file",
             "type": "file",
             "required": true,
-            "description": "The file to upload."
+            "description": "Prediction data file. The prediction file should not have an output column."
           },
           {
             "in": "formData",
             "name": "model_guid",
             "type": "string",
             "required": true,
-            "description": "Description of file contents."
+            "description": "Model guid"
           }
         ],
         "responses": {

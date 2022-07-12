@@ -64,11 +64,16 @@ def train():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         y_col = request.form.get('y_col')
         model_name = request.form.get('model_name')
-        epochs = request.form.get("epochs", default=10, type=int)
+        epochs = request.form.get("epochs", default=20, type=int)
         batch_size = request.form.get("batch_size", default=10, type=int)
 
+        if y_col is None:
+            return "The output column must be entered in the y_col field."
+        if model_name is None:
+            return "Model_name is a required field. The model name can be any text."
+
         ann = ANN()
-        print("Epocha "+model_name+"  "+y_col+"   "+str(epochs)+"****************************")
+        print("Epocha "+model_name+"  "+y_col+"   "+str(epochs)+"*****")
         guid, acc, auc = ann.train_model(file_path, y_col, epochs, batch_size)
         if(guid == 'non'):
             return "the model cannot be trained"
@@ -110,14 +115,18 @@ def predict():
         # Fetch form data
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         model_guid = request.form.get('model_guid')
+        if model_guid is None:
+            return "Model_guid is a required field."
         ann = ANN()
         predictions = ann.predict_value(model_guid, file_path)
 
         print(predictions)
+        if (isinstance(predictions, int)):
+            return "Some error in prediction. Check if the file is correct. The prediction file should not have an output column."
         i = 1
         pred_dict = dict()
         for prediction in predictions:
-            pred_dict['prediction_' + str(i)] = float(prediction[0])
+            pred_dict['prediction_' + str(i)] = float(prediction[0])                                  
             i += 1
 
         return jsonify(pred_dict)

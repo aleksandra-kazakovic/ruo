@@ -54,7 +54,14 @@ class ANN:
 
 
     def predict_value(self, file_name, dataset_path):
-        model = load_model(os.path.join(UPLOAD_FOLDER, file_name + ".h5"))
-        X_test = pd.read_csv(os.path.join(dataset_path))
-
-        return model.predict(X_test)
+        try:
+            model = load_model(os.path.join(UPLOAD_FOLDER, file_name + ".h5"))
+            X_test = pd.read_csv(os.path.join(dataset_path))
+            config = model.get_config() 
+            numInputs = config["layers"][0]["config"]["batch_input_shape"][1]
+            if (X_test.shape[1] != numInputs):
+                return numInputs
+            return model.predict(X_test)
+        except Exception as e:
+            print(e)
+            return 500

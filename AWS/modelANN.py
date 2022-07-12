@@ -88,6 +88,11 @@ class ANN:
        
         model = load_model(os.path.join(UPLOAD_FOLDER, model_name + ".h5"))
         X_test = pd.read_csv(os.path.join(UPLOAD_FOLDER, dataset_name+".csv"))
+        config = model.get_config() 
+        numInputs = config["layers"][0]["config"]["batch_input_shape"][1]
+        if (X_test.shape[1] != numInputs):
+            return numInputs
+
         return model.predict(X_test)
 
     def delete(self, model_name):

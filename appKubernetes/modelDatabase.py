@@ -5,23 +5,19 @@ from modelMl import ModelMl
 class Database():
 
     def __init__(self, app):
-
-
         app.config['MYSQL_HOST'] = os.environ['HOST']
         app.config['MYSQL_PORT'] = int(os.environ['PORT'])
         app.config['MYSQL_USER'] = os.environ['USER']
         app.config['MYSQL_PASSWORD'] = os.environ['PASSWORD']
         app.config['MYSQL_DB'] = os.environ['DB_NAME']
 
-        
         # app.config['MYSQL_HOST'] = 'localhost'
         # app.config['MYSQL_PORT'] = 3306
         # app.config['MYSQL_USER'] = 'root'
         # app.config['MYSQL_PASSWORD'] = ''
-        # app.config['MYSQL_DB'] = 'appKubernetes'
+        # app.config['MYSQL_DB'] = 'appkubernetes'
 
         self.mysql = MySQL(app)
-        
         
 
     def create_table(self):

@@ -6,18 +6,6 @@ class Database():
 
     def __init__(self, app):
 
-        os.environ['USER'] = 'root'
-        os.environ['PASSWORD'] = ''
-        os.environ['DB_NAME'] = 'appKubernetes'
-        os.environ['PORT'] = '3306'
-        os.environ['HOST'] = 'localhost'
-
-        # app.config['MYSQL_HOST'] = os.environ['HOST']
-        # app.config['MYSQL_PORT'] = os.environ['PORT']
-        # app.config['MYSQL_USER'] = os.environ['USER']
-        # app.config['MYSQL_PASSWORD'] = os.environ['PASSWORD']
-        # app.config['MYSQL_DB'] = os.environ['DB_NAME']
-
         app.config['MYSQL_HOST'] = '127.0.0.1'
         app.config['MYSQL_USER'] = 'root'
         app.config['MYSQL_PASSWORD'] = 'kazak'

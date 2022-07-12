@@ -11,7 +11,7 @@ from werkzeug.utils import secure_filename
 
 
 UPLOAD_FOLDER = 'models'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'csv', 'xlsx'}
+ALLOWED_EXTENSIONS = {'txt', 'csv', 'xlsx'}
 
 
 app = Flask(__name__)
@@ -67,9 +67,16 @@ def train():
         epochs = request.form.get("epochs", default=10, type=int)
         batch_size = request.form.get("batch_size", default=10, type=int)
 
+        if y_col is None:
+            return "The output column must be entered in the y_col field."
+        if model_name is None:
+            return "Model_name is a required field. The model name can be any text."
+
         ann = ANN()
         print("Epocha "+model_name+"  "+y_col+"   "+str(epochs)+"***")
         guid, acc, auc = ann.train_model(file_path, y_col, epochs, batch_size)
+        if(guid == 'non'):
+            return "The model cannot be trained. You can see logs in pods"
         db.insert_model(model_name, guid, os.path.join("models", guid + ".h5"), acc, auc)
         return "Ok"
 
@@ -101,10 +108,17 @@ def predict():
         # Fetch form data
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
         model_guid = request.form.get('model_guid')
+        if model_guid is None:
+            return "Model_guid is a required field."
+
         ann = ANN()
         predictions = ann.predict_value(model_guid, file_path)
 
         print(predictions)
+        if (isinstance(predictions, int)):
+            if(predictions != 500):
+                return "Model receives "+ str(predictions)+" inputs. The prediction file should not have an output column. Check if the file is correct."
+            return "Some error in prediction. Check if the file is correct. The prediction file should not have an output column."
         i = 1
         pred_dict = dict()
         for prediction in predictions:
