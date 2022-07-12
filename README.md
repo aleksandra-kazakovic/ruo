@@ -5,14 +5,14 @@ Domaci zadaci. Fajlovi koji mogu pomoci pri testiranju se nalaze u folderu fajlo
 ```
 docker-compose up
 ```
-
+APP: http://127.0.0.1:80
 ## Domaci 2 - CWL
 ```
 cwl-runner scatter-ann.cwl config.yaml
 ```
 
 ## Domaci 3 - Kubernetes
-APP : http://k8s-master.unic.kg.ac.rs:30006/swagger/
+APP: http://k8s-master.unic.kg.ac.rs:30006/swagger/
 
 Obucavanje modela za binarnu klasifikaciju
 
