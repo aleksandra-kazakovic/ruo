@@ -1,5 +1,5 @@
 # Racunarstvo u oblaku 
-Domaci zadaci. 
+Domaci zadaci. Fajlovi koji mogu pomoci pri testiranju se nalaze u folderu fajlovi_za_testiranje
 
 ## Domaci 1 - Docker
 ```
@@ -50,9 +50,9 @@ java -Dserver.port=8083 -Dzk.url=localhost:2181 -Dleader.algo=2 -jar target/bkat
 ```
 Obucavanje modela za binarnu klasifikaciju.
 
-** /updateModel primer ulaza:**<br />
-file: novi .h5 fajl koji ce zameniti stari. Primer f879783a-fc5e-11ec-be37-00155dd19498.h5
-id: 1 - id kod odabrane instance
+**/updateModel primer ulaza:**<br />
+file: novi .h5 fajl koji ce zameniti stari. Primer f879783a-fc5e-11ec-be37-00155dd19498.h5<br/>
+id: 1 - id kod odabrane instance<br/>
 
 **/predict primer ulaza:**<br />
 file: heart_test.csv (fajl bez izlazne kolone)<br />
@@ -60,10 +60,6 @@ id: 0 (paziti da se odabere model kome odgovaraju podaci za predikciju. Izvrsiti
 
 
 ## Domaci 5 - AWS 
-Upaliti EC2 i pokrenuti app/app.py 
-```
-python3 app.py
-```
 Obucavanje modela za Boston Housing
 
 Bucket - aleksandra-1025-2021<br/>
