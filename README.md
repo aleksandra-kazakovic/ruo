@@ -1,5 +1,5 @@
 # Racunarstvo u oblaku 
-Domaci zadaci
+Domaci zadaci. 
 
 ## Domaci 1 - Docker
 ```
@@ -14,27 +14,26 @@ cwl-runner scatter-ann.cwl config.yaml
 ## Domaci 3 - Kubernetes
 APP : http://k8s-master.unic.kg.ac.rs:30006/swagger/
 
-/trainMlModel primer ulaza:<br />
+**/trainMlModel primer ulaza:**<br />
 file: heart.csv fajl<br />
 y_col: HeartDisease<br />
 model_name: Heart model<br />
 epochs: 30
 
-/predict primer ulaza:<br />
+**/predict primer ulaza:**<br />
 file: heart_test.csv (fajl bez izlazne kolone)<br />
 model_guid: 1353d934-01b9-11ed-8e3a-d2239dfcd098<br />
 
 
 ## Domaci 4 - Zookeeper
-1. Pokreniti skriptu pythonApp/start.sh
-
-2. Pokrenuti python app
+1. Pokreniti skriptu pythonApp/start.sh<br />
+2. Pokrenuti python app<br />
 ```
 python3 app.py
 ```
    (http://127.0.0.1:5000/swagger)
 
-3. Pokrenuti aplikaciju na tri porta
+3. Pokrenuti aplikaciju na tri porta<br />
 
    (http://127.0.1.1:8081/swagger-ui.html)
 ```
