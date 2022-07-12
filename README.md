@@ -14,15 +14,15 @@ cwl-runner scatter-ann.cwl config.yaml
 ## Domaci 3 - Kubernetes
 APP : http://k8s-master.unic.kg.ac.rs:30006/swagger/
 
-/trainMlModel primer ulaza:
-file: heart.csv fajl
-y_col: HeartDisease
-model_name: Heart model
+/trainMlModel primer ulaza:<br />
+file: heart.csv fajl<br />
+y_col: HeartDisease<br />
+model_name: Heart model<br />
 epochs: 30
 
-/predict primer ulaza:
-file: heart_test.csv (fajl bez izlazne kolone)
-model_guid: 1353d934-01b9-11ed-8e3a-d2239dfcd098
+/predict primer ulaza:<br />
+file: heart_test.csv (fajl bez izlazne kolone)<br />
+model_guid: 1353d934-01b9-11ed-8e3a-d2239dfcd098<br />
 
 
 ## Domaci 4 - Zookeeper
